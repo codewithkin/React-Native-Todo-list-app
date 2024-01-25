@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text } from 'react-native';
-import TopBar from "./components/TopBar";
-import Date from "./components/Date";
+import TopBar from "../../components/TopBar";
+import Date from "../../components/Date";
 
 export default function App() {
   return (
