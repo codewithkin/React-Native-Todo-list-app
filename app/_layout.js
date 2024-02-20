@@ -1,34 +1,18 @@
-import { useRef, useCallback } from "react";
 import { Image } from "expo-image";
 import Animated, { useSharedValue } from "react-native-reanimated";
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, Slot} from "react-native";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { AntDesign } from '@expo/vector-icons';
-
-SplashScreen.preventAutoHideAsync();
+import { Link } from "expo-router";
 
 const imagePath = "../assets/writing.png";
 
 export default function Main(){
-	 const [fontsLoaded, fontError] = useFonts({
-    'Poppins': require('../assets/fonts/Poppins.ttf'),
-  });
 
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded || fontError) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded, fontError]);
-
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
 	return (
 		<View
 		style={{width: "100%", height: "100%", padding: 20, justifyContent: "space-between", position: "relative", backgroundColor: "#0d1b2a"}}
-		 onLayout={onLayoutRootView}
 		>
 			<Text
 				style={{ color: "white", fontSize: 25, fontWeight: "bold", paddingTop: 25, paddingLeft: 5, }}
@@ -55,14 +39,16 @@ export default function Main(){
 				<View
 				style={{ marginTop: 10, marginBottom: 5 }}
 				>
+					<Link href="/dashboard" asChild>
 					<Pressable
-						style={{ borderRadius: 50, marginTop: 30, fontFamily: "Poppins", backgroundColor: "white", padding: 15, justifyContent: "center", flexDirection: "row", alignItems: "center", gap: 10,}}
+						style={{ borderRadius: 50, marginTop: 30, backgroundColor: "white", padding: 15, justifyContent: "center", flexDirection: "row", alignItems: "center", gap: 10,}}
 					>
 						<Text
 						 style={{ fontSize: 20, fontWeight: "bold", color: "black" }}
-						>Continue</Text>
+						>Get started</Text>
 						<AntDesign name="arrowright" size={24} color="black" />
 					</Pressable>
+					</Link>
 				</View>
 			</View>
 		</View>
